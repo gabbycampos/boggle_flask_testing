@@ -1,25 +1,37 @@
 {% extends 'base.html' %}
 
-{% block title %} Boggle Game {% endblock %}
-
 {% block content %}
-<h1>The game homepage</h1>
-    <div class="col-5">
-      <table class="table table-bordered" id="words-table">
-        {%for i in range(5)%}
-        <tr>
-          {% for j in range(5) %}
-          <td>
-            <div class="content">{{board[i][j]}}</div>
-          </td>
-          {% endfor%}
-        </tr>
-        {%endfor%}
+<div class="container">
+  <h1 class="m-5 text-center">Let's Play Boggle!</h1>
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <table class="table table-bordered" id="board">
+        <tbody>
+          {%for i in range(5)%}
+          <tr>
+            {% for j in range(5) %}
+            <td>
+              <div class="content text-center">{{board[i][j]}}</div>
+            </td>
+            {% endfor%}
+          </tr>
+          {%endfor%}
+        </tbody>
       </table>
 
-      <form>
+      <div id="score" class="float-right mr-5">
+        Score:
+      </div>
+
+      <form id="word-form">
         <input type="input" placeholder="Enter Your Word" name="word" id="word-submit">
-        <button type="submit" class="btn btn-warning">submit</button>
+        <button type="submit" class="btn btn-info">submit</button>
       </form>
+
+      <button id="reset" class="btn btn-info float-right">Play Again</button>
+
+
     </div>
+  </div>
+</div>
 {% endblock %}
