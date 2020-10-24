@@ -27,4 +27,6 @@ def submit_guess():
 
 
 # post_score
-
+@app.route('/post-score', methods=['POST'])
+def post_score():
+  """ receives score and updates highest score """
