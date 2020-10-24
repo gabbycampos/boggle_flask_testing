@@ -1,8 +1,11 @@
 from boggle import Boggle
 from flask import Flask, request, render_template, redirect, session, jsonify
+from flask_debugtoolbar import DebugToolbarExtension
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secretKey'
+
+debug = DebugToolbarExtension(app)
 
 # instance of class Boggle
 boggle_game = Boggle()
@@ -19,9 +22,9 @@ def home():
 def submit_guess():
   """ receives word from user, checks if valid, returns json response """
 
-  word_guess = request.args['word']
+  word = request.args['word']
   board = session['board']
-  res = boggle_game.check_valid_word(board, word_guess)
+  res = boggle_game.check_valid_word(board, word)
 
   return jsonify(({'result': res}))
 
